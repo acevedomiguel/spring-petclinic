@@ -1,21 +1,24 @@
+
 resource "aws_ecs_task_definition" "pet_clinic" {
   family                   = "pet-clinic-app"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 1024
   memory                   = 2048
+  task_role_arn            = "${aws_iam_role.petclinc-role.arn}"
+  execution_role_arn       = "${aws_iam_role.ecs_task_execution_role.arn}"
 
   container_definitions = jsonencode([
     {
-      "image" = "${aws_ecr_repository.spring-petclinic.repository_url}"
+      "image" = "${aws_ecr_repository.spring-petclinic.repository_url}:latest"
       "cpu" = 1024
       "memory" = 2048
       "name" = "pet-clinic-app"
       "networkMode" = "awsvpc"
       "portMappings" = [
         {
-          "containerPort" = 3000
-          "hostPort" = 3000
+          "containerPort" = 8080
+          "hostPort" = 8080
         }
       ]
     }
@@ -28,8 +31,8 @@ resource "aws_security_group" "pet_clinic_task" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 3000
-    to_port         = 3000
+    from_port       = 8080
+    to_port         = 8080
     security_groups = [aws_security_group.lb.id]
   }
 
@@ -60,7 +63,7 @@ resource "aws_ecs_service" "pet_clinic" {
   load_balancer {
     target_group_arn = aws_lb_target_group.pet_clinic.id
     container_name   = "pet-clinic-app"
-    container_port   = 3000
+    container_port   = 8080
   }
 
   depends_on = [aws_lb_listener.pet_clinic]
