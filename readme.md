@@ -1,6 +1,6 @@
 # Engerybox Devops
 
-I attached the files I created for this test, or you can pull the project I forked to test all together: https://github.com/acevedomiguel/spring-petclinic
+I attached the files I created for this test [spring-petclinic.zip](spring-petclinic.zip), or you can pull the project I forked to test all together: https://github.com/acevedomiguel/spring-petclinic
 
 I used ECS for deployment since your company uses it but I have no experience using it, so I will give it a try.
 
@@ -90,7 +90,7 @@ Just in a few words what the script it's doing:
 * First check the required variables to run otherwise will fail
 * Login to docker using AWS credential (required to push to ECR)
 * Docker build and push to ECR
-* If the ECS information was defined it will try to update the deployment otherwise you will need to use the ECR console and manually trigger
+* With the ECS information it will update teh deploy to get the latest build
 
 ## Comments
 * In an ideal scenario terraform should use it’s own keays with it’s own permissions.
