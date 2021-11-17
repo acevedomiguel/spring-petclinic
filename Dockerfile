@@ -12,5 +12,4 @@ RUN ./mvnw package
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target /app/
-RUN ls /app/
 ENTRYPOINT ["java", "-jar", "/app/spring-petclinic-2.5.0-SNAPSHOT.jar"]
