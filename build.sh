@@ -3,8 +3,8 @@
 set -x
 set -e
 
-AWS_ECR="042347819636.dkr.ecr.us-east-2.amazonaws.com/spring-petclinic"
-AWS_REGION="us-east-2"
+AWS_ECR=""
+AWS_REGION=""
 ECS_CLUSTER_NAME="petclinic-cluster"
 ECS_SERVICE_NAME="pet-clinic-service"
 
