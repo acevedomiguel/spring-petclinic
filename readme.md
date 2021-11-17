@@ -25,7 +25,7 @@ provider "aws" {
 ```
 
 ### Create the infrastructure with terraform
-```
+```bash
 cd terraform/
 terraform plan
 terraform apply
@@ -52,11 +52,11 @@ ECS_CLUSTER_NAME=""
 ECS_SERVICE_NAME=""
 ```
 
-### Uopdating the project code
+### Updating the project code
 Once created the infra and updated the build script can be free to modify the code.
 
 Once updated can just run the build code:
-```
+```bash
 ./build.sh
 ```
 
@@ -96,5 +96,5 @@ Just in a few words what the script it's doing:
 * In an ideal scenario terraform should use it’s own keays with it’s own permissions.
 * No `build.sh` script, I always prefer a proper CI/CD, there are a lot of hardcoded values, not a visible status of the pipeline when working with a team, it was actually harder for me to do this way.
 * The terraform options (`values.tf`) it’s kept at the minimum, should be discussed and what values should be parametric.
-* I missed the autoscaling for ECS, since I have no experience. I still had some to learn there and I didn’t want to hack it or just copy and paste, this is what I could do in the few hours I dedicated to the test, hope is still enough.
+* I missed the autoscaling for ECS, since I have no experience. I still had some to learn there and I didn’t want to hack it or just copy and paste, this is what I could do in the the time dedicated to the test, hope is still enough.
 
